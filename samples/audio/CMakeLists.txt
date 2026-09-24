@@ -3,6 +3,7 @@ project(audio C)
 
 add_executable(audio main.c)
 find_package(libxmp-lite CONFIG REQUIRED)
+find_package(libxmp-lite CONFIG REQUIRED)
 
 # Link OSLib and PSP SDK libs (SDK libs last)
 target_link_libraries(audio PRIVATE
