@@ -62,6 +62,8 @@ To install OSLib:
 
 Tracker module playback requires libxmp-lite. Applications using `oslLoadSoundFileMOD()` must link with `-lxmp-lite`.
 
+Tracker module playback requires libxmp-lite. Applications using `oslLoadSoundFileMOD()` must link with `-lxmp-lite`.
+
 ## Documentation
 
 You can find the documentation in the `doc` directory, or consult it online here:  
