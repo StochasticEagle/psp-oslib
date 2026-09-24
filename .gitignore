@@ -9,6 +9,9 @@ build
 # Ignore macOS system file
 .DS_Store
 
+# Ignore personalization directories
+.vscode
+
 # Ignore various file types within the "samples" directory and its subdirectories
 samples/**/*.elf
 samples/**/*.PBP
