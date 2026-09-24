@@ -60,10 +60,6 @@ To install OSLib:
 1. Copy `libosl.a` to `$PSPSDK/lib/`.
 2. Copy the `oslib` directory (containing header files) to `$PSPSDK/include/`.
 
-Tracker module playback requires libxmp-lite. Applications using `oslLoadSoundFileMOD()` must link with `-lxmp-lite`.
-
-Tracker module playback requires libxmp-lite. Applications using `oslLoadSoundFileMOD()` must link with `-lxmp-lite`.
-
 ## Documentation
 
 You can find the documentation in the `doc` directory, or consult it online here:  
