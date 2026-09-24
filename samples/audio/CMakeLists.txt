@@ -2,10 +2,11 @@ cmake_minimum_required(VERSION 3.10)
 project(audio C)
 
 add_executable(audio main.c)
+find_package(libxmp-lite CONFIG REQUIRED)
 
 # Link OSLib and PSP SDK libs (SDK libs last)
 target_link_libraries(audio PRIVATE
-    osl
+    osl libxmp-lite::xmp_lite_static
     png jpeg z m
     pspdisplay pspge pspuser pspdebug
     pspsdk pspctrl psphprm pspumd psprtc pspgu pspgum pspaudiolib pspaudio pspaudiocodec psppower pspusb pspusbstor psputility pspssl psphttp pspwlan

@@ -18,6 +18,9 @@ set(CMAKE_CXX_EXTENSIONS ON)
 set(TARGET_LIB osl)
 add_library(${TARGET_LIB} STATIC)
 
+find_package(libxmp-lite CONFIG REQUIRED)
+target_link_libraries(${TARGET_LIB} PUBLIC libxmp-lite::xmp_lite_static)
+
 # Specify the output directory for the .a file (project root directory)
 set_target_properties(${TARGET_LIB} PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
