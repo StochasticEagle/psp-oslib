@@ -169,9 +169,8 @@ extern OSL_SOUND *oslLoadSoundFileBGM(const char *filename, int stream);
 /**
  * @brief Loads a MOD sound file.
  *
- * This function loads MOD format sound files, including variations like .mod, .it, .s3m, and .xm. MOD files are known for their tracker formats, widely used for creating music with pattern sequences.
- * It requires linking with the MikMod library (-lmikmod). Note that OSLib currently supports only one MOD sound being played at a time; attempting to play multiple MOD sounds concurrently may result in
- * unexpected behavior such as increased playback speed and volume.
+ * This function loads tracker module files in MOD, IT, S3M, and XM formats using libxmp-lite.
+ * Each loaded module owns an independent player context, so multiple module sounds can be played simultaneously on different OSLib audio channels.
  *
  * @warning Streaming is not supported for MOD files. Always set the `stream` parameter to OSL_FMT_NONE to ensure the sound is loaded entirely into RAM. Using OSL_FMT_STREAM can lead to incompatibilities in future OSLib versions.
  *
@@ -184,7 +183,7 @@ extern OSL_SOUND *oslLoadSoundFileBGM(const char *filename, int stream);
  *
  * @return Pointer to the loaded OSL_SOUND structure, or NULL if the file fails to load. Ensure proper error handling in your application.
  *
- * @note Linking with -lmikmod is required to use this functionality.
+ * @note Linking with libxmp-lite (-lxmp-lite) is required to use this functionality.
  */
 OSL_SOUND *oslLoadSoundFileMOD(const char *filename, int stream);
 
@@ -233,14 +232,14 @@ OSL_SOUND *oslLoadSoundFileAT3(const char *filename, int stream);
  *             - 22050 Hz for medium quality
  *             - 11025 Hz for low quality
  *             Decreasing the sample rate reduces CPU load but also audio quality.
- * @param stereo Currently, the only supported value is 1, indicating stereo output.
+ * @param stereo Non-zero for stereo output, or zero for mono output.
  * @param shift Sets the playback speed adjustment. It compensates for sample rate changes to maintain proper playback speed:
  *              - 0: Normal speed (use with 44100 Hz)
  *              - 1: Half speed (use with 22050 Hz to normalize speed when played at 44100 Hz)
  *              - 2: Quarter speed (use with 11025 Hz to normalize speed when played at 44100 Hz)
  *              Values are powers of two; the actual playback speed is divided by 2^shift.
  *
- * @note Setting sample rates other than 44100, 22050, or 11025 Hz is not recommended as it can lead to untested and unpredictable behavior. Future versions of OSLib might not support such customizations.
+ * @note The configuration is captured when a module is loaded. Call this function before oslLoadSoundFileMOD(). Sample rates are limited to the range supported by libxmp-lite; 44100, 22050, and 11025 Hz are the recommended PSP settings.
  *
  * @code
  * // Examples of typical usage:

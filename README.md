@@ -1,6 +1,4 @@
 # OldSchool Library (OSLib)
-![Build Status](https://github.com/dogo/oslib/actions/workflows/Build.yml/badge.svg?event=push)
-
 ## Overview
 
 OldSchool Library (OSLib) is a lightweight and versatile C++ library designed to provide functionality and tools commonly used in classic game development and retro programming projects. It bridges the gap between modern and old-school development environments, making it easier to create and manage applications with a nostalgic touch.
@@ -61,6 +59,8 @@ After running `cmake --preset psp` at the root, a symlink `compile_commands.json
 To install OSLib:
 1. Copy `libosl.a` to `$PSPSDK/lib/`.
 2. Copy the `oslib` directory (containing header files) to `$PSPSDK/include/`.
+
+Tracker module playback requires libxmp-lite. Applications using `oslLoadSoundFileMOD()` must link with `-lxmp-lite`.
 
 ## Documentation
 
