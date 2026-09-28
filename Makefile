@@ -86,11 +86,11 @@ INTRAFONTOBJS := \
 	$(LIB_DIR)/libintraFont/src/libccc.o
 
 GIFLIBOBJS := \
-	$(LIB_DIR)/giflib/gif2rgb.o \
 	$(LIB_DIR)/giflib/dgif_lib.o \
 	$(LIB_DIR)/giflib/egif_lib.o \
 	$(LIB_DIR)/giflib/gif_err.o \
 	$(LIB_DIR)/giflib/gifalloc.o \
+	$(LIB_DIR)/giflib/gif_hash.o \
 	$(LIB_DIR)/giflib/quantize.o \
 	$(LIB_DIR)/giflib/openbsd-reallocarray.o
 

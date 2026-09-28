@@ -95,11 +95,11 @@ set(PSPMATH_SOURCES
     lib/libpspmath/src/vfpu_quaternion_hermite_tangent.c
 )
 set(GIFLIB_SOURCES
-    lib/giflib/gif2rgb.c
     lib/giflib/dgif_lib.c
     lib/giflib/egif_lib.c
     lib/giflib/gif_err.c
     lib/giflib/gifalloc.c
+    lib/giflib/gif_hash.c
     lib/giflib/quantize.c
     lib/giflib/openbsd-reallocarray.c
 )
