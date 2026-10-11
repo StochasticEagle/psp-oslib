@@ -9,9 +9,13 @@
 
     Please note that the documentation you are currently reading is intended for more advanced users who already have a foundational understanding of PSP development.
 
+    \section math Math Integration
+
+    OSLib relies on the separately installed PSP-Math library. Include `oslib.h` for existing OSLib math aliases or `<pspmath.h>` for the canonical API, and link PSP-Math after OSLib (`-l:psp-math.a` for direct static linking). Integer-degree sine/cosine lookup values are precomputed in PSP-Math; there is no runtime trigonometric table setup. `oslSetupFTrigo()` and OSLib's duplicate sine/cosine arrays have been removed. See [PSP-Math](https://github.com/StochasticEagle/psp-math).
+
     \section concepts Key Concepts
 
-    As mentioned earlier, this documentation is tailored for users with prior experience in PSP development. If you are a beginner, the [OSLib repository on GitHub](https://github.com/dogo/oslib) is the best starting point: it holds the README, the changelog and a set of ready-to-build samples under `samples/` covering audio, drawing, text and font rendering, maps, networking, dialogs and save/load.
+    As mentioned earlier, this documentation is tailored for users with prior experience in PSP development. If you are a beginner, the [OSLib fork on GitHub](https://github.com/StochasticEagle/psp-oslib) is the best starting point: it holds the README, the changelog and a set of ready-to-build samples under `samples/` covering audio, drawing, text and font rendering, maps, networking, dialogs and save/load.
 
     For more advanced topics, such as optimizing image rendering using swizzling, please refer to the detailed explanations provided in the \ref swizzling "What is image swizzling?" section.
 */

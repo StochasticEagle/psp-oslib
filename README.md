@@ -6,20 +6,22 @@ OldSchool Library (OSLib) is a lightweight and versatile C++ library designed to
 ## Features
 
 - **Graphics and Rendering:** Basic graphics functions and rendering capabilities for 2D game development.
-- **Input Handling:** Manage keyboard, mouse, and gamepad inputs for interactive applications.
+- **Input Handling:** Read PSP controller buttons and analog input.
 - **Sound Management:** Simple sound and music playback functionalities.
 - **Utility Functions:** A collection of utility functions for handling files, strings, and more.
-- **Cross-Platform Support:** Compatible with multiple platforms, including Windows, macOS, and Linux.
+- **PSP Target:** Builds using the PSP SDK; host operating systems require a working PSP cross-toolchain.
 
 ## Building
 
 ### Library
 
-**Makefile:**
+**Makefile (legacy):**
 ```bash
 make
 make install
 ```
+
+Install the PSP SDK and external dependencies, including `psp-math`, first.
 
 **CMake:**
 ```bash
@@ -56,13 +58,15 @@ After running `cmake --preset psp` at the root, a symlink `compile_commands.json
 
 ## Installation
 
-To install OSLib:
-1. Copy `libosl.a` to `$PSPSDK/lib/`.
-2. Copy the `oslib` directory (containing header files) to `$PSPSDK/include/`.
+Install using the selected build system's `install` target; it installs `libosl.a` and the OSLib headers into the configured PSP SDK prefix. `psp-math` is a separate package and its archive/header must remain installed independently.
 
 Tracker module playback requires libxmp-lite. Applications using `oslLoadSoundFileMOD()` must link with `-lxmp-lite`.
 
 OSLib uses the external `psp-math` package for VFPU math. Install `psp-math` before building OSLib, and link applications using OSLib math APIs with `-l:psp-math.a` after `-losl` (or link the CMake `osl` target, which propagates the archive dependency). The math headers are supplied by `psp-math`; OSLib no longer bundles `libpspmath`.
+
+## Math API and initialization
+
+OSLib's existing math names are aliases for the canonical `<pspmath.h>` API, including `oslVfpu_sinf`, `oslVfpu_cosf`, `oslSin`, and `oslCos`. Integer-degree `oslSini(angle, dist)` and `oslCosi(angle, dist)` use the single read-only sine/cosine lookup table in `psp-math` and preserve the integer-radius Q14 multiplication behavior. **Do not call `oslSetupFTrigo()`**: it and OSLib's former writable sine/cosine arrays have been removed. Table lookup needs no initialization. New math code should use `<pspmath.h>` directly, not the legacy compatibility header. See [PSP-Math](https://github.com/StochasticEagle/psp-math) for fixed-point conventions and limits.
 
 ## Documentation
 
