@@ -1,5 +1,4 @@
 #include "oslib.h"
-#include "vfpu.h"
 
 #define TEXSIZEX_LIMIT 512
 #define TEXSIZEX_LIMITF 512.0f

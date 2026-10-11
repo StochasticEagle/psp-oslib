@@ -1,5 +1,4 @@
 #include "oslib.h"
-#include "vfpu.h"
 
 void oslDrawImage(OSL_IMAGE *img) {
 	// Use the simple routine if no rotation is needed

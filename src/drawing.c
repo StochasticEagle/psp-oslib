@@ -310,7 +310,6 @@ void oslInitGfx(int pixelFormat, int bDoubleBuffer) {
 	osl_doubleBuffer = bDoubleBuffer;
 
 	if (!alreadyInited) {
-		oslSetupFTrigo();
 		oslSetSysDisplayListSize(1 << 20); // Allocate 1 MB for the display list
 		sceGuInit();
 	}
