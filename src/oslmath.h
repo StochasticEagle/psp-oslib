@@ -59,6 +59,17 @@ extern "C" {
 #define oslRand_8888 vfpu_rand_8888
 
 /**
+ * @brief Generate a random RGB565 color.
+ *
+ * @param minS Lower bound for the 5-bit red and blue channels (0 to 31).
+ * @param minL Lower bound for the 6-bit green channel (0 to 63).
+ * @param maxS Upper bound for the 5-bit red and blue channels (0 to 31).
+ * @param maxL Upper bound for the 6-bit green channel (0 to 63).
+ * @return Random packed RGB565 color.
+ */
+#define oslRand_565 vfpu_rand_565
+
+/**
  * @brief Calculate the sine of an angle.
  *
  * This function returns the sine of the given angle (in radians) using the VFPU.
