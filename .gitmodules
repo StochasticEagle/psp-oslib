@@ -6,7 +6,3 @@
 	path = lib/libintraFont
 	url = https://github.com/pspdev/libintraFont
 	shallow = true
-[submodule "lib/libpspmath"]
-	path = lib/libpspmath
-	url = https://github.com/mrneo240/libpspmath
-	shallow = true

@@ -62,7 +62,7 @@ To install OSLib:
 
 Tracker module playback requires libxmp-lite. Applications using `oslLoadSoundFileMOD()` must link with `-lxmp-lite`.
 
-Tracker module playback requires libxmp-lite. Applications using `oslLoadSoundFileMOD()` must link with `-lxmp-lite`.
+OSLib uses the external `psp-math` package for VFPU math. Install `psp-math` before building OSLib, and link applications using OSLib math APIs with `-l:psp-math.a` after `-losl` (or link the CMake `osl` target, which propagates the archive dependency). The math headers are supplied by `psp-math`; OSLib no longer bundles `libpspmath`.
 
 ## Documentation
 

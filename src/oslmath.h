@@ -5,8 +5,7 @@
  *  @brief VFPU accelerated math functions in OSLib.
  *
  *  This file provides mathematical functions that leverage the PSP's Vector
- *  Floating Point Unit (VFPU). They are based on the `libpspmath` library
- *  (version 4) by MrMr[iCE].
+ *  Floating Point Unit (VFPU). They use the external `psp-math` library.
  */
 
 #ifdef __cplusplus
@@ -19,11 +18,11 @@ extern "C" {
  * Mathematical functions utilizing the PSP's Vector Floating Point Unit (VFPU).
  *
  * These functions provide efficient mathematical computations by leveraging the
- * VFPU on the PSP. They are based on the `libpspmath` library (version 4) by MrMr[iCE].
+ * VFPU on the PSP. They use the externally installed `psp-math` library.
  * @{
  */
 
-#include "pspmath.h"
+#include <pspmath.h>
 
 /**
  * @brief Set the seed for the VFPU random number generator.

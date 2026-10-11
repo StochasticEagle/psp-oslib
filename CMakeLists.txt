@@ -21,6 +21,13 @@ add_library(${TARGET_LIB} STATIC)
 find_package(libxmp-lite CONFIG REQUIRED)
 target_link_libraries(${TARGET_LIB} PUBLIC libxmp-lite::xmp_lite_static)
 
+# PSP-Math is provided by its own package, not compiled into libosl.a.
+set(PSP_MATH_ARCHIVE "${PSPDIR}/lib/psp-math.a")
+if(NOT EXISTS "${PSP_MATH_ARCHIVE}")
+    message(FATAL_ERROR "OSLib requires the installed psp-math package: ${PSP_MATH_ARCHIVE}")
+endif()
+target_link_libraries(${TARGET_LIB} PUBLIC "${PSP_MATH_ARCHIVE}")
+
 # Specify the output directory for the .a file (project root directory)
 set_target_properties(${TARGET_LIB} PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
@@ -29,7 +36,6 @@ set_target_properties(${TARGET_LIB} PROPERTIES
 # Include directories
 include_directories(
     INTERFACE PUBLIC_HEADER  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/lib/libintraFont/include>
-    INTERFACE PUBLIC_HEADER  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/lib/libpspmath/include>
     INTERFACE PRIVATE_HEADER $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/lib/giflib>
     ${PROJECT_BINARY_DIR}  # For generated osl_config.h
     src
@@ -40,59 +46,12 @@ include_directories(
 include_directories(SYSTEM
     ${PROJECT_SOURCE_DIR}/lib/giflib
     ${PROJECT_SOURCE_DIR}/lib/libintraFont/include
-    ${PROJECT_SOURCE_DIR}/lib/libpspmath/include
 )
 
 # Define the source files
 set(SOURCE_DIR src)
 set(SFONT_SOURCES
     ${SOURCE_DIR}/sfont.c
-)
-set(PSPMATH_SOURCES
-    lib/libpspmath/src/printMatrixFloat.c
-    lib/libpspmath/src/vfpu_srand.c
-    lib/libpspmath/src/vfpu_randf.c
-    lib/libpspmath/src/vfpu_rand_8888.c
-    lib/libpspmath/src/vfpu_identity_matrix.c
-    lib/libpspmath/src/vfpu_translate_matrix.c
-    lib/libpspmath/src/vfpu_perspective_matrix.c
-    lib/libpspmath/src/vfpu_ortho_matrix.c
-    lib/libpspmath/src/vfpu_sinf.c
-    lib/libpspmath/src/vfpu_cosf.c
-    lib/libpspmath/src/vfpu_tanf.c
-    lib/libpspmath/src/vfpu_asinf.c
-    lib/libpspmath/src/vfpu_acosf.c
-    lib/libpspmath/src/vfpu_atanf.c
-    lib/libpspmath/src/vfpu_sinhf.c
-    lib/libpspmath/src/vfpu_coshf.c
-    lib/libpspmath/src/vfpu_tanhf.c
-    lib/libpspmath/src/vfpu_sincos.c
-    lib/libpspmath/src/vfpu_expf.c
-    lib/libpspmath/src/vfpu_logf.c
-    lib/libpspmath/src/vfpu_fabsf.c
-    lib/libpspmath/src/vfpu_sqrtf.c
-    lib/libpspmath/src/vfpu_powf.c
-    lib/libpspmath/src/vfpu_fmodf.c
-    lib/libpspmath/src/vfpu_fminf.c
-    lib/libpspmath/src/vfpu_fmaxf.c
-    lib/libpspmath/src/vfpu_ease_in_out.c
-    lib/libpspmath/src/vfpu_normalize_vector.c
-    lib/libpspmath/src/vfpu_zero_vector.c
-    lib/libpspmath/src/vfpu_scale_vector.c
-    lib/libpspmath/src/vfpu_add_vector.c
-    lib/libpspmath/src/vfpu_envmap_matrix.c
-    lib/libpspmath/src/vfpu_sphere_to_cartesian.c
-    lib/libpspmath/src/vfpu_quaternion_identity.c
-    lib/libpspmath/src/vfpu_quaternion_copy.c
-    lib/libpspmath/src/vfpu_quaternion_multiply.c
-    lib/libpspmath/src/vfpu_quaternion_normalize.c
-    lib/libpspmath/src/vfpu_quaternion_exp.c
-    lib/libpspmath/src/vfpu_quaternion_ln.c
-    lib/libpspmath/src/vfpu_quaternion_sample_linear.c
-    lib/libpspmath/src/vfpu_quaternion_from_euler.c
-    lib/libpspmath/src/vfpu_quaternion_to_matrix.c
-    lib/libpspmath/src/vfpu_quaternion_sample_hermite.c
-    lib/libpspmath/src/vfpu_quaternion_hermite_tangent.c
 )
 set(GIFLIB_SOURCES
     lib/giflib/dgif_lib.c
@@ -161,7 +120,6 @@ set_source_files_properties(${SOURCE_DIR}/stub.S PROPERTIES LANGUAGE ASM)
 
 # Suppress warnings for third-party library sources
 set_source_files_properties(
-    ${PSPMATH_SOURCES}
     ${GIFLIB_SOURCES}
     ${INTRAFONT_SOURCES}
     PROPERTIES
@@ -171,7 +129,6 @@ set_source_files_properties(
 # Add sources to the target
 target_sources(${TARGET_LIB} PRIVATE
     ${SFONT_SOURCES}
-    ${PSPMATH_SOURCES}
     ${GIFLIB_SOURCES}
     ${INTRAFONT_SOURCES}
     ${LIB_SOURCES}
@@ -184,10 +141,6 @@ install(TARGETS ${TARGET_LIB} DESTINATION ${PSPDIR}/lib)
 install(FILES
     lib/libintraFont/include/intraFont.h
     lib/libintraFont/include/libccc.h
-    DESTINATION ${PSPDIR}/include/oslib
-)
-install(FILES
-    lib/libpspmath/include/pspmath.h
     DESTINATION ${PSPDIR}/include/oslib
 )
 install(FILES
