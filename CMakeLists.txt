@@ -109,7 +109,6 @@ set(LIB_SOURCES
     ${SOURCE_DIR}/usb.c
     ${SOURCE_DIR}/vfile/vfsFile.c
     ${SOURCE_DIR}/vfile/VirtualFile.c
-    ${SOURCE_DIR}/vfpu.c
     ${SOURCE_DIR}/vram_mgr.c
 )
 

@@ -26,7 +26,7 @@ extern "C" {
 #ifdef PSP
 
 #include <psptypes.h>
-#include "pspmath.h"
+#include <pspmath.h>
 
 #endif
 
@@ -42,7 +42,7 @@ extern "C" {
  *
  * @note This function uses the VFPU for fast computation. For angles in degrees, consider using #oslSin.
  */
-extern float oslVfpu_sinf(float angle, float rayon);
+#define oslVfpu_sinf vfpu_sinf_scaled
 
 /**
  * @brief Calculates the cosine of an angle using the VFPU.
@@ -56,7 +56,7 @@ extern float oslVfpu_sinf(float angle, float rayon);
  *
  * @note This function uses the VFPU for fast computation. For angles in degrees, consider using #oslCos.
  */
-extern float oslVfpu_cosf(float angle, float rayon);
+#define oslVfpu_cosf vfpu_cosf_scaled
 
 /** @} */ // end of vfpu
 

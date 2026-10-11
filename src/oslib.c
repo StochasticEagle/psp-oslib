@@ -22,21 +22,11 @@ int osl_isinus[OSL_MAX_ANGLE + 1];
 int osl_icosinus[OSL_MAX_ANGLE + 1];
 
 void oslSetupFTrigo() {
-	// Precompute integer sine and cosine tables
+	// Retain the published legacy table arrays, sourced from psp-math.
 	for (int i = 0; i <= OSL_MAX_ANGLE; i++) {
-		osl_isinus[i] = (int)(oslSin(i, OSL_TRIGO_FACTOR));
-		osl_icosinus[i] = (int)(oslCos(i, OSL_TRIGO_FACTOR));
+		osl_isinus[i] = vfpu_sind_int16(i);
+		osl_icosinus[i] = vfpu_cosd_int16(i);
 	}
-}
-
-int oslCosi(int angle, int dist) {
-	angle = (angle % OSL_MAX_ANGLE + OSL_MAX_ANGLE) % OSL_MAX_ANGLE;
-	return (osl_icosinus[angle] * dist) >> 14;
-}
-
-int oslSini(int angle, int dist) {
-	angle = (angle % OSL_MAX_ANGLE + OSL_MAX_ANGLE) % OSL_MAX_ANGLE;
-	return (osl_isinus[angle] * dist) >> 14;
 }
 
 int oslGetNextPower2(int val) {

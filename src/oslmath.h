@@ -77,6 +77,15 @@ extern "C" {
  * @param x The angle in radians.
  * @return The sine of the input angle.
  */
+/* Existing scaled OSLib entry points use the canonical psp-math API. */
+#define oslVfpu_sinf vfpu_sinf_scaled
+#define oslVfpu_cosf vfpu_cosf_scaled
+#define oslSin       vfpu_sind_scaled
+#define oslCos       vfpu_cosd_scaled
+/* Preserve the existing integer radius contract (not a Q14 radius). */
+#define oslSini(angle, dist) (((int32_t)vfpu_sind_int16((angle)) * (dist)) >> 14)
+#define oslCosi(angle, dist) (((int32_t)vfpu_cosd_int16((angle)) * (dist)) >> 14)
+
 #define oslSinf vfpu_sinf
 
 /**

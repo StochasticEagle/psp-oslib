@@ -35,51 +35,8 @@ export OSL_VERSION
 
 SFONTOBJS := $(SOURCE_DIR)/sfont.o
 
-PSPMATHOBJS := \
-	$(LIB_DIR)/libpspmath/src/printMatrixFloat.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_srand.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_randf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_rand_8888.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_identity_matrix.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_translate_matrix.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_perspective_matrix.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_ortho_matrix.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_sinf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_cosf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_tanf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_asinf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_acosf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_atanf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_sinhf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_coshf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_tanhf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_sincos.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_expf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_logf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_fabsf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_sqrtf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_powf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_fmodf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_fminf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_fmaxf.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_ease_in_out.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_normalize_vector.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_zero_vector.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_scale_vector.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_add_vector.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_envmap_matrix.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_sphere_to_cartesian.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_identity.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_copy.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_multiply.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_normalize.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_exp.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_ln.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_sample_linear.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_from_euler.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_to_matrix.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_sample_hermite.o \
-	$(LIB_DIR)/libpspmath/src/vfpu_quaternion_hermite_tangent.o
+# Math is supplied by the installed psp-math package, not bundled objects.
+PSPMATHOBJS :=
 
 INTRAFONTOBJS := \
 	$(LIB_DIR)/libintraFont/src/intraFont.o \
@@ -98,7 +55,6 @@ LIBOBJS := \
 	$(SFONTOBJS) \
 	$(PSPMATHOBJS) \
 	$(SOURCE_DIR)/oslib.o \
-	$(SOURCE_DIR)/vfpu.o \
 	$(SOURCE_DIR)/drawing.o \
 	$(SOURCE_DIR)/image.o \
 	$(SOURCE_DIR)/palette.o \
