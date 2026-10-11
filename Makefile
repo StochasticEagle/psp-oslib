@@ -201,7 +201,6 @@ install: lib
 	install -d $(DESTDIR)$(PSPDIR)/include/oslib/adhoc/
 	install -m644 $(LIB_DIR)/libintraFont/include/intraFont.h $(DESTDIR)$(PSPDIR)/include/oslib/
 	install -m644 $(LIB_DIR)/libintraFont/include/libccc.h $(DESTDIR)$(PSPDIR)/include/oslib/
-	install -m644 $(LIB_DIR)/libpspmath/include/pspmath.h $(DESTDIR)$(PSPDIR)/include/oslib/
 	install -m644 $(SOURCE_DIR)/adhoc/pspadhoc.h $(DESTDIR)$(PSPDIR)/include/oslib/adhoc/
 	install -m644 $(SOURCE_DIR)/oslmath.h $(DESTDIR)$(PSPDIR)/include/oslib/
 	install -m644 $(SOURCE_DIR)/net.h $(DESTDIR)$(PSPDIR)/include/oslib/
@@ -218,7 +217,6 @@ install: lib
 	install -m644 $(SOURCE_DIR)/oslib.h $(DESTDIR)$(PSPDIR)/include/oslib/
 	install -m644 $(SOURCE_DIR)/text.h $(DESTDIR)$(PSPDIR)/include/oslib/
 	install -m644 $(SOURCE_DIR)/usb.h $(DESTDIR)$(PSPDIR)/include/oslib/
-	install -m644 $(SOURCE_DIR)/vfpu_ops.h $(DESTDIR)$(PSPDIR)/include/oslib/
 	install -m644 $(SOURCE_DIR)/VirtualFile.h $(DESTDIR)$(PSPDIR)/include/oslib/
 	install -m644 $(SOURCE_DIR)/vram_mgr.h $(DESTDIR)$(PSPDIR)/include/oslib/
 	install -m644 $(SOURCE_DIR)/ccc.h $(DESTDIR)$(PSPDIR)/include/oslib/

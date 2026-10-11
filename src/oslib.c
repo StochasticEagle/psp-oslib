@@ -3,8 +3,6 @@
 /*
         GRAPHICS CONSTANTS
  */
-#define OSL_MAX_ANGLE 360
-const int OSL_TRIGO_FACTOR = 16384;
 
 /*
         Global Variables
@@ -18,17 +16,6 @@ OSL_CONTROLLER *osl_keys;
 OSL_REMOTECONTROLLER *osl_remotekeys;
 
 int osl_noFail = 0;
-int osl_isinus[OSL_MAX_ANGLE + 1];
-int osl_icosinus[OSL_MAX_ANGLE + 1];
-
-void oslSetupFTrigo() {
-	// Retain the published legacy table arrays, sourced from psp-math.
-	for (int i = 0; i <= OSL_MAX_ANGLE; i++) {
-		osl_isinus[i] = vfpu_sind_int16(i);
-		osl_icosinus[i] = vfpu_cosd_int16(i);
-	}
-}
-
 int oslGetNextPower2(int val) {
 	int power = 1;
 	while (power < val) {

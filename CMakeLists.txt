@@ -162,7 +162,6 @@ install(FILES
     ${SOURCE_DIR}/oslib.h
     ${SOURCE_DIR}/text.h
     ${SOURCE_DIR}/usb.h
-    ${SOURCE_DIR}/vfpu_ops.h
     ${SOURCE_DIR}/VirtualFile.h
     ${SOURCE_DIR}/vram_mgr.h
     ${SOURCE_DIR}/ccc.h

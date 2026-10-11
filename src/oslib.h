@@ -599,41 +599,6 @@ extern int oslCosi(int angle, int dist);
  */
 extern int oslGetNextPower2(int val);
 
-/**
- * @brief Precomputed sine values for angles from 0 to 360 degrees.
- *
- * This array contains the precomputed sine values for each degree from 0 to 360.
- * The values are scaled to a fixed-point format for faster computation in integer-based
- * operations. This array is used by functions like `oslSini` for efficient trigonometric
- * calculations without needing to compute sine values at runtime.
- *
- * @note The array index corresponds directly to the angle in degrees.
- */
-extern int osl_isinus[361];
-
-/**
- * @brief Precomputed cosine values for angles from 0 to 360 degrees.
- *
- * This array contains the precomputed cosine values for each degree from 0 to 360.
- * Like `osl_isinus`, the values are scaled to a fixed-point format for efficient integer-based
- * operations. This array is used by functions like `oslCosi` to quickly obtain cosine values
- * without runtime computation.
- *
- * @note The array index corresponds directly to the angle in degrees.
- */
-extern int osl_icosinus[361];
-
-/**
- * @brief Sets up the floating-point trigonometric tables.
- *
- * This function initializes internal trigonometric tables that are used for floating-point
- * trigonometric calculations. It must be called during the setup process of OSLib before
- * any floating-point trigonometric functions are used.
- *
- * @note This setup is necessary for functions like `oslSin` and `oslCos` to work properly.
- */
-extern void oslSetupFTrigo();
-
 /** @} */ // end of main_maths
 
 /**
