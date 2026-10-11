@@ -35,9 +35,6 @@ export OSL_VERSION
 
 SFONTOBJS := $(SOURCE_DIR)/sfont.o
 
-# Math is supplied by the installed psp-math package, not bundled objects.
-PSPMATHOBJS :=
-
 INTRAFONTOBJS := \
 	$(LIB_DIR)/libintraFont/src/intraFont.o \
 	$(LIB_DIR)/libintraFont/src/libccc.o
@@ -53,7 +50,6 @@ GIFLIBOBJS := \
 
 LIBOBJS := \
 	$(SFONTOBJS) \
-	$(PSPMATHOBJS) \
 	$(SOURCE_DIR)/oslib.o \
 	$(SOURCE_DIR)/drawing.o \
 	$(SOURCE_DIR)/image.o \
@@ -111,8 +107,7 @@ OBJS := $(LIBOBJS) $(INTRAFONTOBJS) $(GIFLIBOBJS)
 INCDIR := $(INCDIR) \
 	$(SOURCE_DIR) \
 	$(LIB_DIR)/libintraFont/include \
-	$(LIB_DIR)/giflib \
-	$(LIB_DIR)/libpspmath/include
+	$(LIB_DIR)/giflib
 
 #----------------------------------------------------------------------------
 #   Additional libraries
@@ -135,7 +130,7 @@ EXTERN_LIBS := \
 	-lpng -ljpeg \
 	-lz
 
-LIBS := $(EXTERN_LIBS) $(SDK_LIBS) -lm
+LIBS := -lpsp-math $(EXTERN_LIBS) $(SDK_LIBS) -lm
 
 #----------------------------------------------------------------------------
 #   Preprocessor defines
@@ -247,10 +242,6 @@ ghpages: gendoc
 #----------------------------------------------------------------------------
 #   Third-party library rules (suppress warnings)
 #   ---------------------------------------------
-
-# libpspmath objects
-$(PSPMATHOBJS): %.o: %.c
-	$(CC) $(CFLAGS_THIRD_PARTY) $(addprefix -I,$(INCDIR)) -c $< -o $@
 
 # giflib objects
 $(GIFLIBOBJS): %.o: %.c
